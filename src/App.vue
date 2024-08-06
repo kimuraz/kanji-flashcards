@@ -18,7 +18,7 @@ onBeforeUnmount(() => {
 
 <template>
   <HeaderWithDrawer/>
-  <main>
+  <main class="main">
     <ConfirmDialog/>
     <router-view/>
   </main>
@@ -30,5 +30,15 @@ onBeforeUnmount(() => {
   gap: 1rem;
   flex-wrap: nowrap;
   flex-direction: column;
+}
+
+.main {
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .main {
+    padding: 4rem;
+  }
 }
 </style>
