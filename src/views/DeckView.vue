@@ -5,6 +5,7 @@ import {useRoute, useRouter} from "vue-router";
 import Tag from "primevue/tag";
 import Button from "primevue/button";
 import KanjiCardSimple from "../components/KanjiCardSimple.vue";
+import {useConfirm} from "primevue/useconfirm";
 
 const store = useKanjiStore();
 
@@ -21,6 +22,32 @@ watch(() => route.params.deckId, () => {
 });
 
 const deck = store.kanjiDecks.find(deck => deck.id === route.params.deckId);
+
+const confirm = useConfirm();
+const confirmRemoveKanji = (kanji: string) => {
+  confirm.require({
+    message: 'Are you sure you want to remove this kanji from the deck?',
+    header: 'Confirmation',
+    icon: 'pi pi-exclamation-triangle',
+    rejectProps: {
+      label: 'Cancel',
+      severity: 'secondary',
+      outlined: true
+    },
+    acceptProps: {
+      label: 'Remove'
+    },
+    accept: () => {
+      if (!deck) {
+        return;
+      }
+      store.removeKanjiFromDeck(deck.id, kanji);
+    },
+    reject: () => {
+      return;
+    },
+  });
+};
 </script>
 
 <template>
@@ -35,7 +62,7 @@ const deck = store.kanjiDecks.find(deck => deck.id === route.params.deckId);
           <Button
             size="small"
             severity="danger"
-            @click="store.removeKanjiFromDeck(deck.id, kanji.kanji)"
+            @click="confirmRemoveKanji(kanji.kanji)"
           >
             Remove
           </Button>
