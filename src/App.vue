@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import HeaderWithDrawer from "./components/HeaderWithDrawer.vue";
 import {onBeforeMount, onBeforeUnmount} from "vue";
+import ConfirmDialog from 'primevue/confirmdialog';
+
+import HeaderWithDrawer from "./components/HeaderWithDrawer.vue";
 import {useKanjiStore} from "./store/kanjiStore.ts";
 
 const store = useKanjiStore();
@@ -17,6 +19,7 @@ onBeforeUnmount(() => {
 <template>
   <HeaderWithDrawer/>
   <main>
+    <ConfirmDialog/>
     <router-view/>
   </main>
 </template>

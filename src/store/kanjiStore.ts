@@ -46,5 +46,8 @@ export const useKanjiStore = defineStore('kanjiStore', {
         newDeck(name: string) {
             this.kanjiDecks.push({ id: Math.random().toString(36).substring(7), name, kanjis: [] });
         },
+        deleteDeck(deckId: string) {
+            this.kanjiDecks = this.kanjiDecks.filter(deck => deck.id !== deckId);
+        }
     },
 })
