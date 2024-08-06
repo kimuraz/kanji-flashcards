@@ -3,13 +3,14 @@ import Card from "primevue/card";
 
 interface Props {
   kanji: string;
+  selected?: boolean;
 }
 
 defineProps<Props>();
 </script>
 
 <template>
-  <Card class="kanji-card-simple">
+  <Card :class="['kanji-card-simple', { selected }]">
     <template #content>
       <p class="kanji-text">{{kanji}}</p>
     </template>
@@ -31,5 +32,10 @@ defineProps<Props>();
   text-align: center;
   margin: 0;
   padding: 0;
+}
+
+.selected {
+  background-color: #f0f0f0;
+  border: 1px solid darkgreen;
 }
 </style>
