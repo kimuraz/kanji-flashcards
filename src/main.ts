@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import { createPinia } from "pinia";
 
 import PrimeVue from 'primevue/config';
 import preset from './theme';
@@ -22,5 +23,6 @@ app.use(PrimeVue, {
     }
 });
 app.use(router);
+app.use(createPinia());
 
 app.mount('#app');

@@ -7,16 +7,18 @@ import { useRouter } from "vue-router";
 import {computed, ref, watch} from "vue";
 import {Kanji} from "../types/kanji.ts";
 import {getKanjiDetails} from "../services/kanjiApi.ts";
+import {useKanjiStore} from "../store/kanjiStore.ts";
 
 const router = useRouter();
-const kanjiDetails = ref<Kanji|null>(null)
+const store = useKanjiStore();
 const kanji = computed(() => router.currentRoute.value.params.kanji);
+const kanjiDetails = computed(() => store.kanjiDetails[(kanji.value as string) || '']);
 
 watch(kanji, async (kanji) => {
   if (!kanji) {
     return;
   }
-  kanjiDetails.value = await getKanjiDetails(kanji as string);
+  await store.loadKanjiDetails(kanji as string);
 }, { immediate: true });
 </script>
 

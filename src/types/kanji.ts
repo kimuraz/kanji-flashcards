@@ -29,3 +29,9 @@ export interface KanjiReadingSearch {
     main_kanji: string[];
     name_kanji: string[];
 }
+
+export interface KanjiDeck {
+    id: string;
+    name: string;
+    kanjis: Kanji[];
+}

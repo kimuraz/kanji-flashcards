@@ -1,20 +1,18 @@
 <script setup lang="ts">
 import ProgressSpinner from "primevue/progressspinner";
 import {onMounted, ref} from "vue";
-import {getKanjiByGrade} from "../services/kanjiApi.ts";
 
 import KanjiList from "../components/KanjiList.vue";
+import {useKanjiStore} from "../store/kanjiStore.ts";
 
 const isLoading = ref(true);
-const kanjisLists = ref<{ [grade: number]: string[]}>({});
 
+const store = useKanjiStore();
 onMounted(async () => {
   isLoading.value = true;
-  for (let i = 1; i <= 6; i++) {
-    kanjisLists.value[i] = await getKanjiByGrade(i);
+  if (!Object.keys(store.kanjiByGrade).length) {
+    await store.loadKanjiByGrade();
   }
-  // Special case for grade 8
-  kanjisLists.value[8] = await getKanjiByGrade(8);
   isLoading.value = false;
 });
 </script>
@@ -24,7 +22,7 @@ onMounted(async () => {
 
   <div v-else class="kanji-content">
     <KanjiList
-        v-for="(kanjiList, grade) in kanjisLists"
+        v-for="(kanjiList, grade) in store.kanjiByGrade"
         :title="`Grade - ${grade}`"
         :kanjis="kanjiList"
     />
