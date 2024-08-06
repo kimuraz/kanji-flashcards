@@ -1,12 +1,9 @@
 <script setup lang="ts">
+import HeaderWithDrawer from "./components/HeaderWithDrawer.vue";
 </script>
 
 <template>
-  <header>
-    <router-link :to="{ name: 'home' }">
-      <h1>Kanji Flashcards</h1>
-    </router-link>
-  </header>
+  <HeaderWithDrawer/>
   <main>
     <router-view/>
   </main>
