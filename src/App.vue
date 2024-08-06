@@ -3,7 +3,9 @@
 
 <template>
   <header>
-    <h1>Kanji Flashcards</h1>
+    <router-link :to="{ name: 'home' }">
+      <h1>Kanji Flashcards</h1>
+    </router-link>
   </header>
   <main>
     <router-view/>

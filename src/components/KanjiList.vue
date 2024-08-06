@@ -13,10 +13,13 @@ defineProps<Props>();
   <Panel :header="`${title} (${kanjis.length})`" toggleable collapsed>
     <ul class="kanji-list">
       <li v-for="kanji in kanjis" :key="kanji">
-        <KanjiCardSimple
-            :kanji="kanji"
-            @click="openCard(kanji)"
-        />
+        <router-link
+            :to="{ name: 'kanjiDetails', params: { kanji }}"
+        >
+          <KanjiCardSimple
+              :kanji="kanji"
+          />
+        </router-link>
       </li>
     </ul>
   </Panel>

@@ -12,7 +12,7 @@ const headers = {
 }
 
 const get = async (endpoint: string) => {
-    const response = await fetch(baseURL + endpoint, { headers });
+    const response = await fetch(baseURL + endpoint, { headers, cache: "force-cache" });
     if (!response.ok) {
         throw new ResponseError(response.statusText, response.status);
     }
