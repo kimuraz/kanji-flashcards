@@ -29,5 +29,6 @@ defineProps<Props>();
   padding: 0;
   display: flex;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 </style>
