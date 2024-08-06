@@ -48,6 +48,18 @@ export const useKanjiStore = defineStore('kanjiStore', {
         },
         deleteDeck(deckId: string) {
             this.kanjiDecks = this.kanjiDecks.filter(deck => deck.id !== deckId);
-        }
+        },
+        addKanjiToDeck(deckId: string, kanji: Kanji) {
+            const deck = this.kanjiDecks.find(deck => deck.id === deckId);
+            if (deck) {
+                deck.kanjis.push(kanji);
+            }
+        },
+        removeKanjiFromDeck(deckId: string, kanji: string) {
+            const deck = this.kanjiDecks.find(deck => deck.id === deckId);
+            if (deck) {
+                deck.kanjis = deck.kanjis.filter(k => k.kanji !== kanji);
+            }
+        },
     },
 })

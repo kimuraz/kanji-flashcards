@@ -2,11 +2,10 @@
 import Fieldset from "primevue/fieldset";
 import ProgressSpinner from "primevue/progressspinner";
 import Tag from "primevue/tag";
+import SplitButton from "primevue/splitbutton";
 
 import { useRouter } from "vue-router";
-import {computed, ref, watch} from "vue";
-import {Kanji} from "../types/kanji.ts";
-import {getKanjiDetails} from "../services/kanjiApi.ts";
+import {computed, watch} from "vue";
 import {useKanjiStore} from "../store/kanjiStore.ts";
 
 const router = useRouter();
@@ -20,6 +19,20 @@ watch(kanji, async (kanji) => {
   }
   await store.loadKanjiDetails(kanji as string);
 }, { immediate: true });
+
+const deckItems = computed(() => {
+  return store.kanjiDecks
+      .filter(deck => !deck.kanjis.find(k => k.kanji === kanjiDetails.value.kanji))
+      .map(deck => ({
+        label: `${deck.name} (${deck.kanjis.length})`,
+        command: () => {
+          addKanjiToDeck(deck.id);
+        },
+      }));
+});
+const addKanjiToDeck = (deckId: string) => {
+  store.addKanjiToDeck(deckId, kanjiDetails.value);
+};
 </script>
 
 <template>
@@ -30,6 +43,11 @@ watch(kanji, async (kanji) => {
       <h2>{{kanjiDetails.kanji}}</h2>
 
       <div class="info-tags-list">
+        <SplitButton
+            v-if="deckItems.length"
+            :model="deckItems"
+            label="Add to deck"
+        />
         <Tag severity="info" :value="`Grade: ${kanjiDetails.grade}`" rounded/>
         <Tag severity="info" :value="`Stroke count: ${kanjiDetails.stroke_count}`" rounded/>
       </div>

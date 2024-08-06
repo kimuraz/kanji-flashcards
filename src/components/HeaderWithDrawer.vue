@@ -20,7 +20,7 @@ const menuItems = computed<MenuItem[]>(() => {
     id: deck.id,
     label: `${deck.name} (${deck.kanjis.length})`,
     command: () => {
-      router.push({ name: 'home'});
+      router.push({ name: 'deck', params: { deckId: deck.id } });
     },
   }));
 });
