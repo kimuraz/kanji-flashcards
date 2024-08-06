@@ -23,8 +23,8 @@ export const getKanjiDetails = async (kanji: string): Promise<Kanji> => {
     return await get(`kanji/${kanji}`);
 }
 
-export const getKanjiByGrade = async (grade: 1 | 2 | 3 | 4 | 5 | 6): Promise<string[]> => {
-    return await get(`grade/${grade}`);
+export const getKanjiByGrade = async (grade: number): Promise<string[]> => {
+    return await get(`kanji/grade-${grade}`);
 }
 
 export const getKanjiByReading = async (reading: string): Promise<KanjiReadingSearch> => {
