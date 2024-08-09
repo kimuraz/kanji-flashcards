@@ -10,7 +10,6 @@ import {computed, ref} from "vue";
 import { useConfirm } from "primevue/useconfirm";
 import {useKanjiStore} from "../store/kanjiStore.ts";
 import {useRouter} from "vue-router";
-import SearchKanji from "./SearchKanji.vue";
 
 const visible = ref(false);
 

@@ -13,7 +13,13 @@ const fetchResults = async () => {
 };
 
 const router = useRouter();
-const goToKanji = (event) => {
+
+interface KanjiEvent {
+  value: {
+    kanji: string;
+  };
+}
+const goToKanji = (event: KanjiEvent) => {
   router.push({ name: 'kanjiDetails', params: { kanji: event.value.kanji } });
   query.value = '';
   results.value = [];
