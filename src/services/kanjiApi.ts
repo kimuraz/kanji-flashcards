@@ -1,4 +1,5 @@
-import type {Kanji, KanjiReadingSearch, KanjiWords} from "../types/kanji.ts";
+import type {Kanji} from "../types/kanji.ts";
+import supabase from "./supabase.ts";
 
 export class ResponseError extends Error{
     constructor(public message: string, public status: number) {
@@ -6,31 +7,25 @@ export class ResponseError extends Error{
     }
 }
 
-const baseURL = "https://kanjiapi.dev/v1/";
-const headers = {
-    "Accept": "application/json",
-}
-
-const get = async (endpoint: string) => {
-    const response = await fetch(baseURL + endpoint, { headers, cache: "force-cache" });
-    if (!response.ok) {
-        throw new ResponseError(response.statusText, response.status);
-    }
-    return await response.json();
-}
-
 export const getKanjiDetails = async (kanji: string): Promise<Kanji> => {
-    return await get(`kanji/${kanji}`);
+    const { data, error } = await supabase
+        .from("kanji")
+        .select("*")
+        .eq("kanji", kanji);
+    if (error) {
+        throw new ResponseError(error.message, 500);
+    }
+    return data[0];
 }
 
 export const getKanjiByGrade = async (grade: number): Promise<string[]> => {
-    return await get(`kanji/grade-${grade}`);
-}
+    const { data, error } = await supabase
+        .from("kanji")
+        .select("kanji")
+        .eq("grade", grade);
+    if (error) {
+        throw new ResponseError(error.message, 500);
+    }
 
-export const getKanjiByReading = async (reading: string): Promise<KanjiReadingSearch> => {
-    return await get(`reading/${reading}`);
-}
-
-export const getKanjiWords = async (kanji: string): Promise<KanjiWords[]> => {
-    return await get(`words/${kanji}`);
+    return data.map((kanji) => kanji.kanji as string);
 }
