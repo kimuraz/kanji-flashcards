@@ -4,6 +4,7 @@ import ConfirmDialog from 'primevue/confirmdialog';
 
 import HeaderWithDrawer from "./components/HeaderWithDrawer.vue";
 import {useKanjiStore} from "./store/kanjiStore.ts";
+import SearchKanji from "./components/SearchKanji.vue";
 
 const store = useKanjiStore();
 
@@ -20,25 +21,26 @@ onBeforeUnmount(() => {
   <HeaderWithDrawer/>
   <main class="main">
     <ConfirmDialog/>
+    <section class="search-container">
+      <SearchKanji />
+    </section>
+
     <router-view/>
   </main>
 </template>
 
 <style>
-.kanji-content {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: nowrap;
-  flex-direction: column;
+.main {
+  padding: 0.5rem;
 }
 
-.main {
-  padding: 1rem;
+.search-container {
+  margin-bottom: 2rem;
 }
 
 @media (min-width: 768px) {
   .main {
-    padding: 4rem;
+    padding: 1rem;
   }
 }
 </style>

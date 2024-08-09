@@ -56,7 +56,7 @@ const confirmRemoveKanji = (kanji: string) => {
       <h2>{{deck.name}}</h2>
       <Tag severity="info" :value="`Kanjis: ${deck.kanjis.length}`" rounded/>
 
-      <div class="kanji-list">
+      <div class="kanji-list-deck">
         <div class="card-with-delete-btn" v-for="kanji in deck.kanjis" :key="kanji.kanji">
           <KanjiCardSimple :kanji="kanji.kanji"/>
           <Button
@@ -84,7 +84,7 @@ const confirmRemoveKanji = (kanji: string) => {
 </template>
 
 <style>
-.kanji-list {
+.kanji-list-deck {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;

@@ -10,6 +10,7 @@ import {computed, ref} from "vue";
 import { useConfirm } from "primevue/useconfirm";
 import {useKanjiStore} from "../store/kanjiStore.ts";
 import {useRouter} from "vue-router";
+import SearchKanji from "./SearchKanji.vue";
 
 const visible = ref(false);
 
@@ -85,8 +86,8 @@ const deleteDeck = (deckId: string) => {
     <router-link :to="{ name: 'home' }">
       <h1>Kanji Flashcards</h1>
     </router-link>
-  </header>
 
+  </header>
 </template>
 
 <style scoped>

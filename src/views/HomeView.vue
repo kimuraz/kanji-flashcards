@@ -30,5 +30,10 @@ onMounted(async () => {
 </template>
 
 <style scoped>
-
+.kanji-content {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+  flex-direction: column;
+}
 </style>
