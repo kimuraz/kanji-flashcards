@@ -1,5 +1,28 @@
 # Changelog 
 
+## 0.2.0 - Try vue query 
+### Bug Fixes 
+
+- 97f1f41 fix: fix main layout
+
+### Build 
+
+- c901e7c build: fix typescript issues
+
+### Code Refactoring 
+
+- f1cea3a refactor: use vue-query for kanji list
+- 7769d9e refactor: refactor to use supabase
+
+### Features 
+
+- 33308ce feat: add kanji searching
+
+### Others 
+
+- 4ddf60f chore: add .env.example
+--
+
 ## 0.0.1 - MVP 
 ### Code Refactoring 
 
