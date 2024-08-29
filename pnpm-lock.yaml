@@ -14,6 +14,9 @@ importers:
       '@supabase/supabase-js':
         specifier: ^2.45.1
         version: 2.45.1
+      '@tanstack/vue-query':
+        specifier: ^5.52.2
+        version: 5.52.2(vue@3.4.35(typescript@5.5.4))
       pinia:
         specifier: ^2.2.1
         version: 2.2.1(typescript@5.5.4)(vue@3.4.35(typescript@5.5.4))
@@ -327,6 +330,22 @@ packages:
   '@supabase/supabase-js@2.45.1':
     resolution: {integrity: sha512-/PVe3lXmalazD8BGMIoI7+ttvT1mLXy13lNcoAPtjP1TDDY83g8csZbVR6l+0/RZtvJxl3LGXfTJT4bjWgC5Nw==}
 
+  '@tanstack/match-sorter-utils@8.19.4':
+    resolution: {integrity: sha512-Wo1iKt2b9OT7d+YGhvEPD3DXvPv2etTusIMhMUoG7fbhmxcXCtIjJDEygy91Y2JFlwGyjqiBPRozme7UD8hoqg==}
+    engines: {node: '>=12'}
+
+  '@tanstack/query-core@5.52.2':
+    resolution: {integrity: sha512-9vvbFecK4A0nDnrc/ks41e3UHONF1DAnGz8Tgbxkl59QcvKWmc0ewhYuIKRh8NC4ja5LTHT9EH16KHbn2AIYWA==}
+
+  '@tanstack/vue-query@5.52.2':
+    resolution: {integrity: sha512-AWEKGFrU5ssRbQzl0AUWoa3bejut57gjmXGstDOuPtua4nsJ9swzFMEjYowjskCEtmIW+exG/WHyebpEmF5DrA==}
+    peerDependencies:
+      '@vue/composition-api': ^1.1.2
+      vue: ^2.6.0 || ^3.3.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
 
@@ -477,6 +496,9 @@ packages:
   primevue@4.0.4:
     resolution: {integrity: sha512-1moEddbczJ1+yEyfeYQk3xOQB64iCjjM//f+HSXs6YrKVVC0QjPFx9XPNXrr2JjHlp+6D7EpPZtsmcrfA9jWkA==}
     engines: {node: '>=12.11.0'}
+
+  remove-accents@0.5.0:
+    resolution: {integrity: sha512-8g3/Otx1eJaVD12e31UbJj1YzdtVvzH85HV7t+9MJYk/u3XmkOUJ5Ys9wQrf9PCPK8+xn4ymzqYCiZl6QWKn+A==}
 
   rollup@4.20.0:
     resolution: {integrity: sha512-6rbWBChcnSGzIlXeIdNIZTopKYad8ZG8ajhl78lGRLsI2rX8IkaotQhVas2Ma+GPxJav19wrSzvRvuiv0YKzWw==}
@@ -786,6 +808,20 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
+  '@tanstack/match-sorter-utils@8.19.4':
+    dependencies:
+      remove-accents: 0.5.0
+
+  '@tanstack/query-core@5.52.2': {}
+
+  '@tanstack/vue-query@5.52.2(vue@3.4.35(typescript@5.5.4))':
+    dependencies:
+      '@tanstack/match-sorter-utils': 8.19.4
+      '@tanstack/query-core': 5.52.2
+      '@vue/devtools-api': 6.6.3
+      vue: 3.4.35(typescript@5.5.4)
+      vue-demi: 0.14.10(vue@3.4.35(typescript@5.5.4))
+
   '@types/estree@1.0.5': {}
 
   '@types/node@22.1.0':
@@ -976,6 +1012,8 @@ snapshots:
       '@primevue/icons': 4.0.4(vue@3.4.35(typescript@5.5.4))
     transitivePeerDependencies:
       - vue
+
+  remove-accents@0.5.0: {}
 
   rollup@4.20.0:
     dependencies:

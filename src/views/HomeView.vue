@@ -1,31 +1,17 @@
 <script setup lang="ts">
 import ProgressSpinner from "primevue/progressspinner";
-import {onMounted, ref} from "vue";
-
 import KanjiList from "../components/KanjiList.vue";
-import {useKanjiStore} from "../store/kanjiStore.ts";
+import { useKanjiByGrade } from '../composables/useKanjiByGrade';
 
-const isLoading = ref(true);
 
-const store = useKanjiStore();
-onMounted(async () => {
-  isLoading.value = true;
-  if (!Object.keys(store.kanjiByGrade).length) {
-    await store.loadKanjiByGrade();
-  }
-  isLoading.value = false;
-});
+const kanjiByGrade = useKanjiByGrade();
 </script>
 
 <template>
-  <ProgressSpinner v-if="isLoading" />
+  <ProgressSpinner v-if="kanjiByGrade.isPending" />
 
   <div v-else class="kanji-content">
-    <KanjiList
-        v-for="(kanjiList, grade) in store.kanjiByGrade"
-        :title="`Grade - ${grade}`"
-        :kanjis="kanjiList"
-    />
+    <KanjiList v-for="(kanjiList, grade) in kanjiByGrade.data" :title="`Grade - ${grade}`" :kanjis="kanjiList" />
   </div>
 </template>
 
