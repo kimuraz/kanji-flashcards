@@ -1,5 +1,11 @@
 # Changelog 
 
+## 0.3.0 - Caching 
+### Features 
+
+- b32900d feat: add aggresive caching and local persitency
+--
+
 ## 0.2.0 - Try vue query 
 ### Bug Fixes 
 

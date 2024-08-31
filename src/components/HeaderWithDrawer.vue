@@ -4,12 +4,12 @@ import Button from "primevue/button";
 import Menu from "primevue/menu";
 import InputText from "primevue/inputtext";
 import InputGroup from "primevue/inputgroup";
-import {MenuItem} from "primevue/menuitem";
+import type { MenuItem } from "primevue/menuitem";
 
-import {computed, ref} from "vue";
+import { computed, ref } from "vue";
 import { useConfirm } from "primevue/useconfirm";
-import {useKanjiStore} from "../store/kanjiStore.ts";
-import {useRouter} from "vue-router";
+import { useKanjiStore } from "../store/kanjiStore.ts";
+import { useRouter } from "vue-router";
 
 const visible = ref(false);
 
@@ -73,14 +73,14 @@ const deleteDeck = (deckId: string) => {
         <div class="deck-menu-item">
           <p>{{ item.label }}</p>
 
-          <Button size="small" severity="danger" icon="pi pi-times" @click="deleteDeck(item.id)"/>
+          <Button size="small" severity="danger" icon="pi pi-times" @click="deleteDeck(item.id)" />
         </div>
       </template>
     </Menu>
   </Drawer>
 
   <header class="header">
-    <Button icon="pi pi-bars" @click="visible = true"/>
+    <Button icon="pi pi-bars" @click="visible = true" />
 
     <router-link :to="{ name: 'home' }">
       <h1>Kanji Flashcards</h1>

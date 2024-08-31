@@ -1,7 +1,7 @@
 {
   "name": "kanji-flashcards",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.3.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -11,7 +11,9 @@
   "dependencies": {
     "@primevue/themes": "^4.0.4",
     "@supabase/supabase-js": "^2.45.1",
-    "@tanstack/vue-query": "^5.52.2",
+    "@tanstack/query-persist-client-core": "^5.53.1",
+    "@tanstack/vue-query": "^5.53.1",
+    "@tanstack/vue-query-devtools": "^5.53.1",
     "pinia": "^2.2.1",
     "primeicons": "^7.0.0",
     "primevue": "^4.0.4",

@@ -25,7 +25,9 @@ app.use(PrimeVue, {
   }
 });
 app.use(ConfirmationService);
-app.use(VueQueryPlugin);
+app.use(VueQueryPlugin, {
+  enableDevtoolsV6Plugin: true,
+});
 
 app.use(router);
 app.use(createPinia());
